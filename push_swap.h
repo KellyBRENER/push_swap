@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:57 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/11 14:37:10 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:19:55 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	pb(t_list **a, t_list **b);
 void	print_lst(t_list *lst, char c);
 t_list	*ft_lstnew_nbr(int nbr);
 t_list	*ft_lstbeforelast(t_list *lst);
+int	check_stack(t_list *a);
 
 #endif

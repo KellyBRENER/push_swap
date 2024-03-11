@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:42:49 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/11 13:56:32 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:25:15 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,12 @@ int	ft_tablen(char **argv)
 	}
 	return (i - 1);
 }
+//stack_init
+	/*convertit chaque string de char en int
+	verifie qu'il fasse partie des int (entre int max et min)
+	verifie que le nbr ne soit pas egal a un autre nbr de la liste
+	cree la liste pour le 1er nombre
+	ajoute les autres nbr a la fin de la liste chainee*/
 
 int	stack_init(t_list **a, char **argv)
 {
@@ -95,6 +101,58 @@ int	stack_init(t_list **a, char **argv)
 	}
 	return (0);
 }
+
+int	check_stack(t_list *a)
+{
+	int nbr_max;
+
+	nbr_max = a->nbr;
+	a = a->next;
+	while (a)
+	{
+		if (a->nbr < nbr_max)
+			return (1);
+		nbr_max = a->nbr;
+		a = a->next;
+	}
+	return (0);
+}
+int	tiny_sort(t_list **a)
+{
+	int	nbr1;
+	int	nbr2;
+	int	nbr3;
+
+	nbr1 = (*a)->nbr;
+	nbr2 = ((*a)->next)->nbr;
+	nbr3 = (((*a)->next)->next)->nbr;
+	if (nbr1 > nbr2 && nbr1 > nbr3)
+	{
+		if (nbr2 > nbr3)
+		{
+			ra(a);
+			sa(a);
+		}
+		else
+			ra(a);
+	}
+	else if (nbr1 < nbr2 && nbr1 < nbr3)
+	{
+		sa(a);
+		ra(a);
+	}
+	else
+	{
+		if (nbr2 < nbr3)
+			sa(a);
+		else
+			rra(a);
+	}
+	if (check_stack(*a) == 1)
+		return (-1);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*a;
@@ -113,7 +171,17 @@ int	main(int argc, char **argv)
 		ft_lstclear(&a, free);
 		return (perror("stack a initialisation failed"), 1);
 	}
-	print_lst(a, 'a');
+	if (check_stack(a) == 0)
+		return (ft_lstclear(&a, free),
+			ft_printf("numbers already sorted"), 0);
+	if (ft_tablen(argv) == 3)
+	{
+		if (tiny_sort(&a) == -1)
+			return (ft_lstclear(&a, free), 1);
+		return (ft_lstclear(&a, free), 0);
+	}
+	/* pour tester les fonctions de base:*/
+	/*print_lst(a, 'a');
 	print_lst(b, 'b');
 	pb(&a, &b);
 	pb(&a, &b);
@@ -141,21 +209,15 @@ int	main(int argc, char **argv)
 	print_lst(b, 'b');
 	rrr(&a, &b);
 	print_lst(a, 'a');
-	print_lst(b, 'b');
+	print_lst(b, 'b');*/
 	ft_lstclear(&a, free);
-	ft_lstclear(&b, free);
-	//stack_init
-	/*convertit chaque string de char en int
-	verifie qu'il fasse partie des int (entre int max et min)
-	verifie que le nbr ne soit pas egal a un autre nbr de la liste
-	cree la liste pour le 1er nombre
-	ajoute les autres nbr a la fin de la liste chainee*/
+	if (b)
+		ft_lstclear(&b, free);
+	return (0);
+	//check_stack
+	/*faire une fonction qui check si les nbr sont dans le bon ordre*/
 	//sort_stack
 	/*trier les nombres :
-	=>creer une fonction pour chaque type de mouvement
-	(swap(sa, sb, ss)/ push(pa, pb)/ rotate(ra, rb, rr)/
-	reverse rotate(rra, rrb, rrr))
-	chaque fonction finit par un write pour ecrire l'action effectue dans stdin
 	=> pour 3 nbr : tiny_sort
 	- faire une fonction qui cherche le + grand nombre
 	- s'il est au sommet -> rotate
@@ -180,5 +242,4 @@ int	main(int argc, char **argv)
 	- above_median
 	- cheapest*/
 	/*creer une fonction qui supprime tout en cas d'erreur*/
-
 }
