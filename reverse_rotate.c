@@ -1,56 +1,70 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 15:39:00 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/08 18:01:54 by kbrener-         ###   ########.fr       */
+/*   Created: 2024/03/08 15:43:28 by kbrener-          #+#    #+#             */
+/*   Updated: 2024/03/11 14:36:36 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
+t_list	*ft_lstbeforelast(t_list *lst)
+{
+	while (lst)
+	{
+		if (!(lst->next)->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}
 
-int	swap(t_list **lst)
+int	reverse_rotate(t_list **lst)
 {
 	t_list	*temp;
+	t_list	*last;
 
 	temp = NULL;
+	last = NULL;
 	if (!lst || !*lst || !(*lst)->next)
 		return (-1);
 	temp = *lst;
-	*lst = (*lst)->next;
-	temp->next = (*lst)->next;
+	last = ft_lstlast(*lst);
+	ft_lstbeforelast(*lst)->next = NULL;
+	*lst = last;
 	(*lst)->next = temp;
 	return (0);
 }
-void	sa(t_list **a)
+
+void	rra(t_list **a)
 {
-	if (swap(a) == -1)
+	if (reverse_rotate(a) == -1)
 		return;
-	write(1, "sa\n", 3);
+	write(1, "rra\n", 4);
 	return;
 }
 
-void	sb(t_list **b)
+void	rrb(t_list **b)
 {
-	if (swap(b) == -1)
+	if (reverse_rotate(b) == -1)
 		return;
-	write(1, "sb\n", 3);
+	write(1, "rrb\n", 4);
 	return;
 }
 
-void	ss(t_list **a, t_list **b)
+void	rrr(t_list **a, t_list **b)
 {
-	if (swap(a) == -1)
+	if (reverse_rotate(a) == -1)
 		return;
-	else if (swap(b) == -1)
+	else if (reverse_rotate(b) == -1)
 	{
-		if (swap(a) == -1)
+		if (rotate(a) == -1)
 			ft_printf("a move cannot be cancelled");
 		return;
 	}
-	write(1, "ss\n", 3);
+	write(1, "rrr\n", 4);
 	return;
 }

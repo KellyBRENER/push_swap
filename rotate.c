@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:52:22 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/04 16:01:50 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:06:37 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,44 @@
 
 int	rotate(t_list **lst)
 {
-	t_list	temp;
-	t_list	first;
+	t_list	*temp;
 
 	temp = NULL;
-	first = NULL;
-	if (!lst || !*lst || !*lst->next)
-		return (-1)
+	if (!lst || !*lst || !(*lst)->next)
+		return (-1);
 	temp = *lst;
-	*lst = *lst->next;
-	first = *lst;
-	while (lst->next)
-		lst = lst->next;
-	lst->next = temp;
-	lst = &first;
+	*lst = (*lst)->next;
+	temp->next = NULL;
+	ft_lstadd_back(lst, temp);
+	return (0);
+}
+
+void	ra(t_list **a)
+{
+	if (rotate(a) == -1)
+		return;
+	write(1, "ra\n", 3);
+	return;
+}
+
+void	rb(t_list **b)
+{
+	if (rotate(b) == -1)
+		return;
+	write(1, "rb\n", 3);
+	return;
+}
+
+void	rr(t_list **a, t_list **b)
+{
+	if (rotate(a) == -1)
+		return;
+	else if (rotate(b) == -1)
+	{
+		if (reverse_rotate(a) == -1)
+			printf("a move cannot be cancelled");
+		return;
+	}
+	write(1, "rr\n", 3);
+	return;
 }
