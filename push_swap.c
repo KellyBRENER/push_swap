@@ -6,12 +6,13 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:42:49 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/11 16:25:15 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:41:06 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
+/*crée une nouvelle lst avec un nbr*/
 t_list	*ft_lstnew_nbr(int nbr)
 {
 	t_list	*lst;
@@ -24,6 +25,7 @@ t_list	*ft_lstnew_nbr(int nbr)
 	return (lst);
 }
 
+/*imprime les liste pour les tests*/
 void	print_lst(t_list *lst, char c)
 {
 	ft_printf("liste %c\n", c);
@@ -34,6 +36,7 @@ void	print_lst(t_list *lst, char c)
 	}
 }
 
+/*vérifie qu'il n'y a pas déjà ce nbr dans la liste*/
 int	same_nbr(int nbr, t_list *a)
 {
 	while (a)
@@ -45,6 +48,7 @@ int	same_nbr(int nbr, t_list *a)
 	return (1);
 }
 
+/*vérifie si les nbr correspondent aux règles du projet*/
 int	check_nbr(int nbr, char *argv, t_list *a)
 {
 	if (nbr == 0 && argv[0] != '0')
@@ -65,6 +69,7 @@ int	check_nbr(int nbr, char *argv, t_list *a)
 	return (nbr);
 }
 
+/*calcule le nbr de nbr, la taille de la liste*/
 int	ft_tablen(char **argv)
 {
 	int	i;
@@ -101,7 +106,8 @@ int	stack_init(t_list **a, char **argv)
 	}
 	return (0);
 }
-
+//check_stack
+	/*check si les nbr sont dans le bon ordre*/
 int	check_stack(t_list *a)
 {
 	int nbr_max;
@@ -117,6 +123,8 @@ int	check_stack(t_list *a)
 	}
 	return (0);
 }
+
+//tiny_sort => pour 3 nbr
 int	tiny_sort(t_list **a)
 {
 	int	nbr1;
@@ -172,14 +180,30 @@ int	main(int argc, char **argv)
 		return (perror("stack a initialisation failed"), 1);
 	}
 	if (check_stack(a) == 0)
-		return (ft_lstclear(&a, free),
-			ft_printf("numbers already sorted"), 0);
+	{
+		ft_lstclear(&a, free);
+		ft_printf("numbers already sorted");
+		return (0);
+	}
 	if (ft_tablen(argv) == 3)
 	{
 		if (tiny_sort(&a) == -1)
 			return (ft_lstclear(&a, free), 1);
 		return (ft_lstclear(&a, free), 0);
 	}
+	if (push_swap(&a, &b) == -1)
+	{
+		ft_printf("push_swap failed");
+		ft_lstclear(&a, free);
+		if (b)
+			ft_lstclear(&b, free);
+		return (1);
+	}
+	ft_lstclear(&a, free);
+	if (b)
+		ft_lstclear(&b, free);
+	return (0);
+}
 	/* pour tester les fonctions de base:*/
 	/*print_lst(a, 'a');
 	print_lst(b, 'b');
@@ -210,19 +234,9 @@ int	main(int argc, char **argv)
 	rrr(&a, &b);
 	print_lst(a, 'a');
 	print_lst(b, 'b');*/
-	ft_lstclear(&a, free);
-	if (b)
-		ft_lstclear(&b, free);
-	return (0);
-	//check_stack
-	/*faire une fonction qui check si les nbr sont dans le bon ordre*/
+
 	//sort_stack
 	/*trier les nombres :
-	=> pour 3 nbr : tiny_sort
-	- faire une fonction qui cherche le + grand nombre
-	- s'il est au sommet -> rotate
-	- si c'est le 2eme -> rra
-	- si le 1er nbr est + grand que le 2eme -> sa
 	=> pour trier + de nbr :
 	- on envoie les nbr de a vers b, jusqu'a n'avoir que 3 nbr dans a
 	- chaque nbr de b, va viser un nbr dans a :
@@ -242,4 +256,3 @@ int	main(int argc, char **argv)
 	- above_median
 	- cheapest*/
 	/*creer une fonction qui supprime tout en cas d'erreur*/
-}

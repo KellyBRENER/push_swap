@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:39:00 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/08 18:01:54 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:36:29 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,32 @@ int	swap(t_list **lst)
 	(*lst)->next = temp;
 	return (0);
 }
-void	sa(t_list **a)
+int	sa(t_list **a)
 {
 	if (swap(a) == -1)
-		return;
+		return (-1);
 	write(1, "sa\n", 3);
-	return;
+	return (0);
 }
 
-void	sb(t_list **b)
+int	sb(t_list **b)
 {
 	if (swap(b) == -1)
-		return;
+		return (-1);
 	write(1, "sb\n", 3);
-	return;
+	return (0);
 }
 
-void	ss(t_list **a, t_list **b)
+int	ss(t_list **a, t_list **b)
 {
 	if (swap(a) == -1)
-		return;
+		return (-1);
 	else if (swap(b) == -1)
 	{
 		if (swap(a) == -1)
 			ft_printf("a move cannot be cancelled");
-		return;
+		return (-1);
 	}
 	write(1, "ss\n", 3);
-	return;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:52:22 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/11 14:06:37 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:35:14 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,32 @@ int	rotate(t_list **lst)
 	return (0);
 }
 
-void	ra(t_list **a)
+int	ra(t_list **a)
 {
 	if (rotate(a) == -1)
-		return;
+		return (-1);
 	write(1, "ra\n", 3);
-	return;
+	return (0);
 }
 
-void	rb(t_list **b)
+int	rb(t_list **b)
 {
 	if (rotate(b) == -1)
-		return;
+		return (-1);
 	write(1, "rb\n", 3);
-	return;
+	return (0);
 }
 
-void	rr(t_list **a, t_list **b)
+int	rr(t_list **a, t_list **b)
 {
 	if (rotate(a) == -1)
-		return;
+		return (-1);
 	else if (rotate(b) == -1)
 	{
 		if (reverse_rotate(a) == -1)
 			printf("a move cannot be cancelled");
-		return;
+		return (-1);
 	}
 	write(1, "rr\n", 3);
-	return;
+	return (0);
 }

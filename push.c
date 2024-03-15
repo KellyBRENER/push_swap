@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:02:47 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/08 18:00:11 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:30:32 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ int	push(t_list **src, t_list **dest)
 	return (0);
 }
 
-void	pa(t_list **a, t_list **b)
+int	pa(t_list **a, t_list **b)
 {
 	if (push(b, a) == -1)
-		return;
+		return (-1);
 	write(1, "pa\n", 3);
-	return;
+	return (0);
 }
 
-void	pb(t_list **a, t_list **b)
+int	pb(t_list **a, t_list **b)
 {
 	if (push(a, b) == -1)
-		return;
+		return (-1);
 	write(1, "pb\n", 3);
-	return;
+	return (0);
 }

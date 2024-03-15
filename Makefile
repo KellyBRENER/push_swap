@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 15:53:15 by kbrener-          #+#    #+#              #
-#    Updated: 2024/03/08 17:44:51 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/03/15 16:49:34 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRC		= 	push_swap.c \
 			rotate.c \
 			swap.c \
 			reverse_rotate.c \
+			algorythm_1.c \
+			algorythm_2.c \
 
 
 # SRC_BONUS	= pipex_bonus.c \

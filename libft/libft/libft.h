@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:07:06 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/11 13:49:27 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:44:52 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ typedef struct s_list
 {
 	char			*content;
 	int				nbr;
+	int				pos;
+	int				nb_rev;
+	struct s_list	*target;
 	struct s_list	*next;
 }			t_list;
 
