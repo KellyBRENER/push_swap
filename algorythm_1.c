@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 09:29:50 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/15 16:54:40 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:57:02 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	ft_pos_lst(t_list *lst, t_list *current)
 		if (lst->nbr == current->nbr)
 			return (i);
 		i++;
+		lst = lst->next;
 	}
 	return (-1);
 }
@@ -54,23 +55,24 @@ t_list	*ft_target_in_b(t_list *b, int nb)
 	int	diff;
 	int	diff_min;
 	t_list	*target;
-	t_list	*current;
 
 	target = NULL;
-	current = b;
-	while (current)
+	diff_min = INT_MAX;
+	if (!b)
+		return (b);
+	while (b)
 	{
-		diff = current->nbr - nb;
+		diff = b->nbr - nb;
 		if (diff < 0)
 			diff = -diff;
 		if (diff < diff_min)
 		{
 			diff_min = diff;
-			target = current;
+			target = b;
 		}
-		current = current->next;
+		b = b->next;
 	}
-	if (target->nbr > nb)
+	if (target->nbr > nb && ft_lstsize(b) > 1)
 		target = ft_lstbeforenb(b, target);
 	return (target);
 }
@@ -146,6 +148,7 @@ t_list	*ft_cheapest_in_a(t_list *a, t_list *b)
 	t_list	*current;
 
 	lst_move_min = NULL;
+	move_min = INT_MAX;
 	current = a;
 	while (current)
 	{
@@ -252,7 +255,7 @@ int	ft_a_to_b(t_list **a, t_list **b, t_list *current)
 }
 int	push_swap(t_list **a, t_list **b)
 {
-	pa(a, b);
+	pb(a, b);
 	while (ft_lstsize(*a) > 3)
 	{
 		if (ft_a_to_b(a, b, ft_cheapest_in_a(*a, *b)) == -1)

@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:57 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/15 16:56:06 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:00:46 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	ft_rot_rev(t_list **a, t_list **b, t_list *current, int dir);
 int	ft_a_to_b(t_list **a, t_list **b, t_list *current);
 int	push_swap(t_list **a, t_list **b);
 int	ft_b_to_a(t_list **a, t_list **b);
+int	ft_nbmax(t_list *lst);
+int	ft_nbmin(t_list *lst);
+t_list	*ft_search_lst(t_list *lst, int nb);
 
-//modifier les push, rot et rev pour qu'ils retournent un int
 #endif
