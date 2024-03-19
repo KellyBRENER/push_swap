@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:57 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/18 17:00:46 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:54:18 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	rrr(t_list **a, t_list **b);
 int	push(t_list **src, t_list **dest);
 int	pa(t_list **a, t_list **b);
 int	pb(t_list **a, t_list **b);
-void	print_lst(t_list *lst, char c);
+void	print_lst(t_list *lst, char *c);
 t_list	*ft_lstnew_nbr(int nbr);
 t_list	*ft_lstbeforelast(t_list *lst);
 int	check_stack(t_list *a);
@@ -51,8 +51,8 @@ t_list	*ft_lstbeforenb(t_list *b, t_list *target);
 t_list	*ft_target_in_b(t_list *b, int nb);
 int	ft_nb_rot(t_list *current, t_list *target);
 int	ft_nb_rev(t_list *current, t_list *target);
-void	ft_init_lsta(t_list *a, t_list *b, t_list *current);
-void	ft_init_lstb(t_list *b, t_list *target);
+int	ft_init_lsta(t_list *a, t_list *b, t_list *current);
+int	ft_init_lstb(t_list *b, t_list *target);
 int	ft_nbmove(t_list *a, t_list *b, t_list *current);
 t_list	*ft_cheapest_in_a(t_list *a, t_list *b);
 int	ft_rev(t_list **a, t_list **b, t_list *current);

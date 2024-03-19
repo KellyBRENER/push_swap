@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 15:38:09 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/18 17:01:46 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/19 10:27:44 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	ft_nbmax(t_list *lst)
 {
 	int	nb_max;
 
-	nb_max = INT_MIN;
+	nb_max = lst->nbr;
+	lst = lst->next;
 	while (lst)
 	{
 		if (lst->nbr > nb_max)
@@ -43,10 +44,11 @@ int	ft_nbmin(t_list *lst)
 {
 	int	nb_min;
 
-	nb_min = INT_MAX;
+	nb_min = lst->nbr;
+	lst = lst->next;
 	while (lst)
 	{
-		if (lst->nbr > nb_min)
+		if (lst->nbr < nb_min)
 			nb_min = lst->nbr;
 		lst = lst->next;
 	}
@@ -123,5 +125,8 @@ int	ft_b_to_a(t_list **a, t_list **b)
 			}
 		}
 	}
+	amin = ft_nbmin(*a);
+	while ((*a)->nbr != amin)
+		ra(a);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:50:25 by kbrener-          #+#    #+#             */
-/*   Updated: 2023/10/13 16:25:53 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:09:00 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *))
 		return ;
 	if (lst)
 	{
-		(*del)(lst->content);
+		if (lst->content)
+			(*del)(lst->content);
 		free(lst);
 	}
 }

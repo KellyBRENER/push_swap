@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:07:06 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/15 16:44:52 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:10:06 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_list
 	int				nbr;
 	int				pos;
 	int				nb_rev;
+	int				best_move;
 	struct s_list	*target;
 	struct s_list	*next;
 }			t_list;

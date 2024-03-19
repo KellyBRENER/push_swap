@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 09:29:50 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/18 15:57:02 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:14:26 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,19 @@ int	ft_nb_rev(t_list *current, t_list *target)
 	return (current->nb_rev);
 }
 
-void	ft_init_lsta(t_list *a, t_list *b, t_list *current)
+int	ft_init_lsta(t_list *a, t_list *b, t_list *current)
 {
 	current->target = ft_target_in_b(b, current->nbr);
 	current->pos = ft_pos_lst(a, current);
 	current->nb_rev = ft_lstsize(a) - ft_pos_lst(a, current);
+	return (0);
 }
 
-void	ft_init_lstb(t_list *b, t_list *target)
+int	ft_init_lstb(t_list *b, t_list *target)
 {
 	target->pos = ft_pos_lst(b, target);
 	target->nb_rev = ft_lstsize(b) - target->pos;
+	return (0);
 }
 
 //compte le nombre de move pour déblacer lst_a dans b
@@ -114,28 +116,29 @@ int	ft_nbmove(t_list *a, t_list *b, t_list *current)
 	int	rota_revb;
 	int	reva_rotb;
 
-	ft_init_lsta(a, b, current);
-	ft_init_lstb(b, current->target);
+	if (ft_init_lsta(a, b, current) == -1 ||
+			ft_init_lstb(b, current->target) == -1)
+			return (-1);
 	rot = ft_nb_rot(current, current->target);
 	rev = ft_nb_rev(current, current->target);
 	rota_revb = current->pos + current->target->nb_rev;
 	reva_rotb = current->nb_rev + current->target->pos;
 	if (rot < rev && rot < rota_revb && rot < reva_rotb)
 	{
-		current->content = "rot";
+		current->best_move = 1;
 		return (rot + 1);
 	}
 	if (rev < rot && rev < rota_revb && rev < reva_rotb)
 	{
-		current->content = "rev";
+		current->best_move = 2;
 		return (rev +1);
 	}
 	if (rota_revb < reva_rotb)
 	{
-		current->content = "rota_revb";
+		current->best_move = 3;
 		return (rota_revb + 1);
 	}
-	current->content = "reva_rotb";
+	current->best_move = 4;
 	return (reva_rotb);
 }
 
@@ -153,6 +156,8 @@ t_list	*ft_cheapest_in_a(t_list *a, t_list *b)
 	while (current)
 	{
 		move = ft_nbmove(a, b, current);
+		if (move == -1)
+			return (ft_printf("error in ft_nbmove"), NULL);
 		if (move < move_min)
 		{
 			move_min = move;
@@ -244,11 +249,13 @@ int	ft_rot_rev(t_list **a, t_list **b, t_list *current, int dir)
 //fait les rot ou rev et push a vers b
 int	ft_a_to_b(t_list **a, t_list **b, t_list *current)
 {
-	if (ft_strncmp(current->content, "rot", 3) == 0)
+	if (!current)
+		return (-1);
+	if (current->best_move == 1)
 		return (ft_rot(a, b, current));
-	if (ft_strncmp(current->content, "rev", 3) == 0)
+	if (current->best_move == 2)
 		return (ft_rev(a, b, current));
-	if (ft_strncmp(current->content, "rota_revb", 9) == 0)
+	if (current->best_move == 3)
 		return (ft_rot_rev(a, b, current, 1));
 	return (ft_rot_rev(a, b, current, 0));
 
@@ -265,7 +272,7 @@ int	push_swap(t_list **a, t_list **b)
 		return (-1);
 	if (ft_b_to_a(a, b) == -1)
 		return (-1);
-	if (check_stack(*b) == -1)
+	if (check_stack(*a) == -1)
 		return (-1);
 	return (0);
 }

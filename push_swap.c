@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:42:49 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/18 14:52:25 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:17:03 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,18 @@ t_list	*ft_lstnew_nbr(int nbr)
 	if (lst == NULL)
 		return (NULL);
 	lst->nbr = nbr;
+	lst->content = NULL;
 	lst->next = NULL;
 	return (lst);
 }
 
 /*imprime les liste pour les tests*/
-void	print_lst(t_list *lst, char c)
+void	print_lst(t_list *lst, char *c)
 {
-	ft_printf("liste %c\n", c);
+	ft_printf("liste %s\n", c);
 	while (lst)
 	{
-		ft_printf("%d\n", lst->nbr);
+		ft_printf("%d / ", lst->nbr);
 		lst = lst->next;
 	}
 }
@@ -185,6 +186,7 @@ int	main(int argc, char **argv)
 		ft_printf("numbers already sorted");
 		return (0);
 	}
+	//print_lst(a, "a before");
 	if (ft_tablen(argv) == 3)
 	{
 		if (tiny_sort(&a) == -1)
@@ -199,6 +201,7 @@ int	main(int argc, char **argv)
 			ft_lstclear(&b, free);
 		return (1);
 	}
+	//print_lst(a, "a after");
 	ft_lstclear(&a, free);
 	if (b)
 		ft_lstclear(&b, free);
