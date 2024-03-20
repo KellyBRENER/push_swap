@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 09:29:50 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/19 11:14:26 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/20 17:19:13 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,24 @@ t_list	*ft_lstbeforenb(t_list *b, t_list *target)
 dans la liste chainée*/
 t_list	*ft_target_in_b(t_list *b, int nb)
 {
-	int	diff;
-	int	diff_min;
 	t_list	*target;
+	int	target_nbr;
 
-	target = NULL;
-	diff_min = INT_MAX;
+	target = ft_search_lst(b, ft_nbmin(b));
 	if (!b)
 		return (b);
+	target_nbr = ft_nbmin(b);
+	if (nb < ft_nbmin(b) || nb > ft_nbmax(b))
+		return (ft_search_lst(b, ft_nbmax(b)));
 	while (b)
 	{
-		diff = b->nbr - nb;
-		if (diff < 0)
-			diff = -diff;
-		if (diff < diff_min)
+		if (b->nbr < nb && b->nbr > target_nbr)
 		{
-			diff_min = diff;
 			target = b;
+			target_nbr = b->nbr;
 		}
 		b = b->next;
 	}
-	if (target->nbr > nb && ft_lstsize(b) > 1)
-		target = ft_lstbeforenb(b, target);
 	return (target);
 }
 
@@ -98,6 +94,8 @@ int	ft_init_lsta(t_list *a, t_list *b, t_list *current)
 	current->target = ft_target_in_b(b, current->nbr);
 	current->pos = ft_pos_lst(a, current);
 	current->nb_rev = ft_lstsize(a) - ft_pos_lst(a, current);
+	if (current->target == NULL || current->pos == -1 || current->nb_rev == -1)
+		return (-1);
 	return (0);
 }
 
@@ -105,6 +103,8 @@ int	ft_init_lstb(t_list *b, t_list *target)
 {
 	target->pos = ft_pos_lst(b, target);
 	target->nb_rev = ft_lstsize(b) - target->pos;
+	if (target->pos == -1 || target->nb_rev == -1)
+		return (-1);
 	return (0);
 }
 
@@ -126,17 +126,17 @@ int	ft_nbmove(t_list *a, t_list *b, t_list *current)
 	if (rot < rev && rot < rota_revb && rot < reva_rotb)
 	{
 		current->best_move = 1;
-		return (rot + 1);
+		return (rot);
 	}
 	if (rev < rot && rev < rota_revb && rev < reva_rotb)
 	{
 		current->best_move = 2;
-		return (rev +1);
+		return (rev);
 	}
 	if (rota_revb < reva_rotb)
 	{
 		current->best_move = 3;
-		return (rota_revb + 1);
+		return (rota_revb);
 	}
 	current->best_move = 4;
 	return (reva_rotb);
@@ -150,9 +150,10 @@ t_list	*ft_cheapest_in_a(t_list *a, t_list *b)
 	t_list	*lst_move_min;
 	t_list	*current;
 
-	lst_move_min = NULL;
-	move_min = INT_MAX;
+	lst_move_min = a;
 	current = a;
+	move_min = ft_nbmove(a, b, current);
+	current = current->next;
 	while (current)
 	{
 		move = ft_nbmove(a, b, current);
@@ -174,24 +175,24 @@ int	ft_rev(t_list **a, t_list **b, t_list *current)
 	int	nb_rev_b;
 	int	i;
 
-	if (current->pos < current->target->pos)
+	if (current->nb_rev < current->target->nb_rev)
 	{
-		i = current->pos;
-		nb_rev_b = current->target->pos - i;
+		i = current->nb_rev;
+		nb_rev_b = current->target->nb_rev - i;
 		nb_rev_a = 0;
 	}
 	else
 	{
-		i = current->target->pos;
+		i = current->target->nb_rev;
 		nb_rev_b = 0;
-		nb_rev_a = current->pos - i;
+		nb_rev_a = current->nb_rev - i;
 	}
 	while (i-- > 0)
 		rrr(a, b);
 	while (nb_rev_a-- > 0)
-		ra(a);
+		rra(a);
 	while (nb_rev_b-- > 0)
-		rb(b);
+		rrb(b);
 	return (pb(a, b));
 }
 
@@ -214,7 +215,7 @@ int	ft_rot(t_list **a, t_list **b, t_list *current)
 		nb_rot_a = current->pos - i;
 	}
 	while (i-- > 0)
-		rrr(a, b);
+		rr(a, b);
 	while (nb_rot_a-- > 0)
 		ra(a);
 	while (nb_rot_b-- > 0)

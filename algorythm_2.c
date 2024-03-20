@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 15:38:09 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/19 10:27:44 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:43:01 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,13 @@ int	ft_b_to_a(t_list **a, t_list **b)
 	t_list	*lst_extrem;
 	int	i;
 
-	amin = ft_nbmin(*a);
-	bmax = ft_nbmax(*b);
-	amax = ft_nbmax(*a);
+
 	while (*b)
 	{
-		if (bmax > amax && (*b)->nbr == bmax)
+		amin = ft_nbmin(*a);
+		bmax = ft_nbmax(*b);
+		amax = ft_nbmax(*a);
+		if (bmax > amax && (*b)->nbr == bmax)//mettre amax en dernier dans a
 		{
 			lst_extrem = ft_search_lst(*a, amax);
 			lst_extrem->pos = ft_pos_lst(*a, lst_extrem);
@@ -87,7 +88,7 @@ int	ft_b_to_a(t_list **a, t_list **b)
 			}
 			pa(a, b);
 		}
-		else if ((*b)->nbr < amin)
+		else if ((*b)->nbr < amin)//mettre amin en 1er
 		{
 			lst_extrem = ft_search_lst(*a, amin);
 			lst_extrem->pos = ft_pos_lst(*a, lst_extrem);
@@ -126,7 +127,16 @@ int	ft_b_to_a(t_list **a, t_list **b)
 		}
 	}
 	amin = ft_nbmin(*a);
+	lst_extrem = ft_search_lst(*a, amin);
+	lst_extrem->pos = ft_pos_lst(*a, lst_extrem);
+	lst_extrem->nb_rev = ft_lstsize(*a) - lst_extrem->pos;
+	if (lst_extrem->pos < lst_extrem->nb_rev)
+	{
+		while ((*a)->nbr != amin)
+			ra(a);
+		return (0);
+	}
 	while ((*a)->nbr != amin)
-		ra(a);
+		rra(a);
 	return (0);
 }
