@@ -6,21 +6,11 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:43:28 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/15 16:33:58 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/21 10:40:30 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
-t_list	*ft_lstbeforelast(t_list *lst)
-{
-	while (lst)
-	{
-		if (!(lst->next)->next)
-			return (lst);
-		lst = lst->next;
-	}
-	return (lst);
-}
 
 int	reverse_rotate(t_list **lst)
 {

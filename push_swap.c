@@ -6,256 +6,72 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:42:49 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/20 16:37:08 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:55:58 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
-
-/*crée une nouvelle lst avec un nbr*/
-t_list	*ft_lstnew_nbr(int nbr)
-{
-	t_list	*lst;
-
-	lst = malloc(sizeof(*lst));
-	if (lst == NULL)
-		return (NULL);
-	lst->nbr = nbr;
-	lst->content = NULL;
-	lst->next = NULL;
-	return (lst);
-}
-
-/*imprime les liste pour les tests*/
-void	print_lst(t_list *lst, char *c)
-{
-	ft_printf("liste %s\n", c);
-	while (lst)
-	{
-		ft_printf("%d / ", lst->nbr);
-		lst = lst->next;
-	}
-}
-
-/*vérifie qu'il n'y a pas déjà ce nbr dans la liste*/
-int	same_nbr(int nbr, t_list *a)
-{
-	while (a)
-	{
-		if (a->nbr == nbr)
-			return (0);
-		a = a->next;
-	}
-	return (1);
-}
-
-/*vérifie si les nbr correspondent aux règles du projet*/
-int	check_nbr(int nbr, char *argv, t_list *a)
-{
-	if (nbr == 0 && argv[0] != '0')
-	{
-		ft_printf("invalid number");
-		return (-1);
-	}
-	else if (nbr >= INT_MAX || nbr <= INT_MIN)
-	{
-		ft_printf("invalid number\n");
-		return (-1);
-	}
-	else if (same_nbr(nbr, a) == 0)
-	{
-		ft_printf("there is two numbers identical");
-		return (-1);
-	}
-	return (nbr);
-}
-
-/*calcule le nbr de nbr, la taille de la liste*/
-int	ft_tablen(char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i])
-	{
-		if (!argv[i][0])
-			return (i);
-		i++;
-	}
-	return (i - 1);
-}
-//stack_init
-	/*convertit chaque string de char en int
-	verifie qu'il fasse partie des int (entre int max et min)
-	verifie que le nbr ne soit pas egal a un autre nbr de la liste
-	cree la liste pour le 1er nombre
-	ajoute les autres nbr a la fin de la liste chainee*/
-
-int	stack_init(t_list **a, char **argv)
-{
-	int	i;
-	int	nbr;
-
-	i = 1;
-	while (argv[i])
-	{
-		nbr = ft_atoi(argv[i]);
-		if (check_nbr(nbr, argv[i], *a) == -1)
-			return (-1);
-		ft_lstadd_back(a, ft_lstnew_nbr(nbr));
-		i++;
-	}
-	return (0);
-}
-//check_stack
-	/*check si les nbr sont dans le bon ordre*/
-int	check_stack(t_list *a)
-{
-	int nbr_max;
-
-	nbr_max = a->nbr;
-	a = a->next;
-	while (a)
-	{
-		if (a->nbr < nbr_max)
-			return (1);
-		nbr_max = a->nbr;
-		a = a->next;
-	}
-	return (0);
-}
+#include "push_swap.h"
 
 //tiny_sort => pour 3 nbr
 int	tiny_sort(t_list **a)
 {
-	int	nbr1;
-	int	nbr2;
-	int	nbr3;
-
-	nbr1 = (*a)->nbr;
-	nbr2 = ((*a)->next)->nbr;
-	nbr3 = (((*a)->next)->next)->nbr;
-	if (nbr1 > nbr2 && nbr1 > nbr3)
+	if ((*a)->nbr == ft_nbmax(*a))
 	{
-		if (nbr2 > nbr3)
-		{
-			ra(a);
+		ra(a);
+		if ((*a)->nbr != ft_nbmin(*a))
 			sa(a);
-		}
-		else
-			ra(a);
 	}
-	else if (nbr1 < nbr2 && nbr1 < nbr3)
+	else if ((*a)->nbr == ft_nbmin(*a))
 	{
 		sa(a);
 		ra(a);
 	}
+	else if ((((*a)->next)->next)->nbr == ft_nbmax(*a))
+		sa(a);
 	else
-	{
-		if (nbr2 < nbr3)
-			sa(a);
-		else
-			rra(a);
-	}
+		rra(a);
 	if (check_stack(*a) == 1)
 		return (-1);
 	return (0);
 }
 
-int	main(int argc, char **argv)
+//fait les rot ou rev et push a vers b
+int	ft_src_to_dst(t_list **src, t_list **dst, t_list *current, int dir)
 {
-	t_list	*a;
-	t_list	*b;
+	if (!current)
+		return (-1);
+	if (current->best_move == 1)
+		return (ft_rot(src, dst, current, dir));
+	if (current->best_move == 2)
+		return (ft_rev(src, dst, current, dir));
+	if (current->best_move == 3)
+		return (ft_rot_rev(src, dst, current, dir, 1));
+	return (ft_rot_rev(src, dst, current, dir, 0));
+}
 
-	a = NULL;
-	b = NULL;
-	if (argc == 1 || (argc == 2 && !argv[1][0]))//verifie qu'il y a au moins un arg et qu'il ne soit pas vide
-		return(perror("incorrect argument count"), 1);
-	else if (argc == 2)//s'il y a 1 argument, on split les nombres pour que chaque no;bre soit une ligne de argv
-		argv = ft_split(argv[1], ' ');
-	if (stack_init(&a, argv) == -1)
-		return (1);
-	if (a == NULL)
+/*principe: la stack b sera remplie petit à petit dans l'ordre décroissant
+les lst seront ainsi remise dans a dans l'ordre croissant
+1. déplacer 2 lst dans b
+2. chercher dans a la lst qui demandera le moins de mouvement
+pour être déplacer dans b*/
+int	push_swap(t_list **a, t_list **b)
+{
+	pb(a, b);
+	while (ft_lstsize(*a) > 3)
 	{
-		ft_lstclear(&a, free);
-		return (perror("stack a initialisation failed"), 1);
+		if (ft_src_to_dst(a, b, ft_cheapest(*a, *b, 0), 0) == -1)
+			return (-1);
 	}
-	if (check_stack(a) == 0)
+	if (tiny_sort(a) == -1)
+		return (-1);
+	while (*b)
 	{
-		ft_lstclear(&a, free);
-		ft_printf("numbers already sorted");
-		return (0);
+		if (ft_src_to_dst(b, a, ft_cheapest(*b, *a, 1), 1) == -1)
+			return (-1);
 	}
-	//print_lst(a, "a before");
-	if (ft_tablen(argv) == 3)
-	{
-		if (tiny_sort(&a) == -1)
-			return (ft_lstclear(&a, free), 1);
-		return (ft_lstclear(&a, free), 0);
-	}
-	if (push_swap(&a, &b) == -1)
-	{
-		ft_printf("push_swap failed");
-		ft_lstclear(&a, free);
-		if (b)
-			ft_lstclear(&b, free);
-		return (1);
-	}
-	//print_lst(a, "a after");
-	ft_lstclear(&a, free);
-	if (b)
-		ft_lstclear(&b, free);
+	while ((*a)->nbr != ft_nbmin(*a))
+		ra(a);
+	if (check_stack(*a) == -1)
+		return (-1);
 	return (0);
 }
-	/* pour tester les fonctions de base:*/
-	/*print_lst(a, 'a');
-	print_lst(b, 'b');
-	pb(&a, &b);
-	pb(&a, &b);
-	pb(&a, &b);
-	pa(&a, &b);
-	print_lst(a, 'a');
-	print_lst(b, 'b');
-	sa(&a);
-	sb(&b);
-	print_lst(a, 'a');
-	print_lst(b, 'b');
-	ss(&a, &b);
-	print_lst(a, 'a');
-	print_lst(b, 'b');
-	ra(&a);
-	rb(&b);
-	print_lst(a, 'a');
-	print_lst(b, 'b');
-	rr(&a, &b);
-	print_lst(a, 'a');
-	print_lst(b, 'b');
-	rra(&a);
-	rrb(&b);
-	print_lst(a, 'a');
-	print_lst(b, 'b');
-	rrr(&a, &b);
-	print_lst(a, 'a');
-	print_lst(b, 'b');*/
-
-	//sort_stack
-	/*trier les nombres :
-	=> pour trier + de nbr :
-	- on envoie les nbr de a vers b, jusqu'a n'avoir que 3 nbr dans a
-	- chaque nbr de b, va viser un nbr dans a :
-		- chercher le + petit nbr qui lui est superieur
-		- s'il n'existe pas, chercher le + petit nbr
-		- faire une fonction qui cherche le + petit nbr
-	- pour positionner un nombre avant sa cile (si la cible est le + petit superieur)
-		-> rra + pa
-	chaque node a une structure qui comprend :
-	- sa position dans la stack (current_position)
-	- la valeur de nbr (value)
-	- l'adresse du noeud du dessus (previous)
-	- l'adresse du noeud du dessous (next)
-	- l'adresse du noeud vise (target_node)
-	- final index
-	- push_price
-	- above_median
-	- cheapest*/
-	/*creer une fonction qui supprime tout en cas d'erreur*/
