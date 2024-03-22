@@ -6,11 +6,11 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:39:00 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/15 16:36:29 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:29:26 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 int	swap(t_list **lst)
 {
@@ -25,6 +25,7 @@ int	swap(t_list **lst)
 	(*lst)->next = temp;
 	return (0);
 }
+
 int	sa(t_list **a)
 {
 	if (swap(a) == -1)

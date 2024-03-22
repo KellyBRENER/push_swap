@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 15:53:15 by kbrener-          #+#    #+#              #
-#    Updated: 2024/03/21 11:29:55 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/03/22 11:18:10 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC		= 	push_swap.c \
 			reverse_rotate.c \
 			cheapest.c \
 			cheapest_utils.c \
+			cheapest_utils_2.c \
 			check_init.c \
 			execute.c \
 			lst.c \

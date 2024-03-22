@@ -6,11 +6,11 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:07:21 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/21 11:08:48 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:24:41 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 //compte le nombre de rotation totale (ra, rb et rr)
 int	ft_nb_rot(t_list *current, t_list *target)

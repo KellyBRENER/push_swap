@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:42:49 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/21 13:55:58 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:23:16 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ int	tiny_sort(t_list **a)
 }
 
 //fait les rot ou rev et push a vers b
-int	ft_src_to_dst(t_list **src, t_list **dst, t_list *current, int dir)
+int	ft_src_to_dst(t_list **a, t_list **b, t_list *current, int dir)
 {
 	if (!current)
 		return (-1);
 	if (current->best_move == 1)
-		return (ft_rot(src, dst, current, dir));
+		return (ft_rot(a, b, current, dir));
 	if (current->best_move == 2)
-		return (ft_rev(src, dst, current, dir));
+		return (ft_rev(a, b, current, dir));
 	if (current->best_move == 3)
-		return (ft_rot_rev(src, dst, current, dir, 1));
-	return (ft_rot_rev(src, dst, current, dir, 0));
+		return (ft_rot_rev(a, b, current, dir));
+	return (ft_rev_rot(a, b, current, dir));
 }
 
 /*principe: la stack b sera remplie petit à petit dans l'ordre décroissant
@@ -66,7 +66,7 @@ int	push_swap(t_list **a, t_list **b)
 		return (-1);
 	while (*b)
 	{
-		if (ft_src_to_dst(b, a, ft_cheapest(*b, *a, 1), 1) == -1)
+		if (ft_src_to_dst(a, b, ft_cheapest(*b, *a, 1), 1) == -1)
 			return (-1);
 	}
 	while ((*a)->nbr != ft_nbmin(*a))

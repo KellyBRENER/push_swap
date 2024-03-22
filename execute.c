@@ -6,78 +6,108 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:09:27 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/21 13:48:55 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:23:38 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 /*execute les ra et rb et rr si possible*/
-int	ft_rot(t_list **src, t_list **dst, t_list *current, int dir)
+int	ft_rot(t_list **a, t_list **b, t_list *current, int dir)
 {
 	while (current->pos > 0 && current->target->pos > 0)
 	{
-		rr(src, dst);
+		rr(a, b);
 		current->pos--;
 		current->target->pos--;
 	}
-	while (dir == 0 && current->pos-- > 0)
-		ra(src);
-	while (dir == 1 && current->pos-- > 0)
-		rb(src);
-	while (dir == 0 && current->target->pos-- > 0)
-		rb(dst);
-	while (dir == 1 && current->target->pos-- > 0)
-		ra(dst);
+	while (current->pos-- > 0)
+	{
+		if (dir == 0)
+			ra(a);
+		else
+			rb(b);
+	}
+	while (current->target->pos-- > 0)
+	{
+		if (dir == 0)
+			rb(b);
+		else
+			ra(a);
+	}
 	if (dir == 0)
-		return (pb(src, dst));
-	return (pa(dst, src));
+		return (pb(a, b));
+	return (pa(a, b));
 }
 
 /*execute les rra et rrb et rrr si possible*/
-int	ft_rev(t_list **src, t_list **dst, t_list *current, int dir)
+int	ft_rev(t_list **a, t_list **b, t_list *current, int dir)
 {
 	while (current->nb_rev > 0 && current->target->nb_rev > 0)
 	{
-		rrr(src, dst);
+		rrr(a, b);
 		current->nb_rev--;
 		current->target->nb_rev--;
 	}
-	while (dir == 0 && current->nb_rev-- > 0)
-		rra(src);
-	while (dir == 1 && current->nb_rev-- > 0)
-		rrb(src);
-	while (dir == 0 && current->target->nb_rev-- > 0)
-		rrb(dst);
-	while (dir == 1 && current->target->nb_rev-- > 0)
-		rra(dst);
+	while (current->nb_rev-- > 0)
+	{
+		if (dir == 0)
+			rra(a);
+		else
+			rrb(b);
+	}
+	while (current->target->nb_rev-- > 0)
+	{
+		if (dir == 0)
+			rrb(b);
+		else
+			rra(a);
+	}
 	if (dir == 0)
-		return (pb(src, dst));
-	return (pa(dst, src));
+		return (pb(a, b));
+	return (pa(a, b));
 }
 
-/*execute les ra et rrb ou rra et rb*/
-int	ft_rot_rev(t_list **src, t_list **dst, t_list *current, int dir, int sens)
+/*execute les ra et rrb*/
+int	ft_rot_rev(t_list **a, t_list **b, t_list *current, int dir)
 {
-	//if dir = 0 on va de a vers b
-	//if sens = 1 on rot src et rev dst
-	while (dir == 0 && sens == 1 && current->pos-- > 0)//rot = a, rev = b
-		ra(src);
-	while (dir == 1 && sens == 1 && current->pos-- > 0)//rot = b, rev = a
-		rb(src);
-	while (dir == 0 && sens == 0 && current->target->pos-- > 0)//rev = a, rot = b
-		rb(dst);
-	while (dir == 1 && sens == 0 && current->target->pos-- > 0)//rev = b, rot = a
-		ra(dst);
-	while (dir == 0 && sens == 1 && current->target->nb_rev-- > 0)
-		rrb(dst);
-	while (dir == 1 && sens == 1 && current->target->nb_rev-- > 0)
-		rra(dst);
-	while (dir == 0 && sens == 0 && current->nb_rev-- > 0)
-		rra(src);
-	while (dir == 1 && sens == 0 && current->nb_rev-- > 0)
-		rrb(src);
+	while (current->pos-- > 0)
+	{
+		if (dir == 0)
+			ra(a);
+		else
+			rb(b);
+	}
+	while (current->target->nb_rev-- > 0)
+	{
+		if (dir == 0)
+			rrb(b);
+		else
+			rra(a);
+	}
 	if (dir == 0)
-		return (pb(src, dst));
-	return (pa(dst, src));
+		return (pb(a, b));
+	return (pa(a, b));
+}
+
+/*execute les rra et rb*/
+int	ft_rev_rot(t_list **a, t_list **b, t_list *current, int dir)
+{
+	while (current->target->pos-- > 0)
+	{
+		if (dir == 0)
+			rb(b);
+		else
+			ra(a);
+	}
+	while (current->nb_rev-- > 0)
+	{
+		if (dir == 0)
+			rra(a);
+		else
+			rrb(b);
+	}
+	if (dir == 0)
+		return (pb(a, b));
+	return (pa(a, b));
 }

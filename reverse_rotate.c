@@ -6,11 +6,11 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 15:43:28 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/21 10:40:30 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:25:47 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 int	reverse_rotate(t_list **lst)
 {

@@ -6,11 +6,11 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:36:40 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/21 14:08:26 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:25:16 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 /*imprime les listes*/
 void	print_lst(t_list *lst, char *c)
@@ -53,8 +53,8 @@ t_list	*ft_lstbeforelast(t_list *lst)
 t_list	*ft_lstbeforetarget(t_list *lst, t_list *target)
 {
 	int	i;
-	ft_init_target(lst, target);
 
+	ft_init_target(lst, target);
 	i = 0;
 	if (target->pos == 0)
 		return (ft_lstlast(lst));

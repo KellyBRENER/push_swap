@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:02:47 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/18 15:01:04 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:28:54 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 int	push(t_list **src, t_list **dest)
 {
 	t_list	*temp;
-	//t_list	temp_dest;
 
 	temp = NULL;
-	//temp_dest = NULL;
 	if (!dest)
 		return (-1);
-	temp = *dest;//stock la 1ere lst de la dest
-	*dest = *src;//la 1ere lst de la source, devient la 1ere lst de la dest
-	*src = (*src)->next;//l'ancienne 2eme lst de le source, devient la 1ere
-	(*dest)->next = temp;//l'ancienne 1ere lst de la dest devient la 2eme
+	temp = *dest;
+	*dest = *src;
+	*src = (*src)->next;
+	(*dest)->next = temp;
 	return (0);
 }
 

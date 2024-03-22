@@ -6,16 +6,16 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:13:28 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/21 11:16:49 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 10:55:31 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
 /*check si les nbr d'une liste sont dans l'ordre croissant*/
 int	check_stack(t_list *a)
 {
-	int nbr_max;
+	int	nbr_max;
 
 	nbr_max = a->nbr;
 	a = a->next;
