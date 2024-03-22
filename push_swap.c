@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:42:49 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 11:23:16 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:31:58 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,20 @@ int	push_swap(t_list **a, t_list **b)
 		if (ft_src_to_dst(a, b, ft_cheapest(*a, *b, 0), 0) == -1)
 			return (-1);
 	}
-	if (tiny_sort(a) == -1)
+	if (check_stack(*a) == 1 && tiny_sort(a) == -1)
 		return (-1);
 	while (*b)
 	{
 		if (ft_src_to_dst(a, b, ft_cheapest(*b, *a, 1), 1) == -1)
 			return (-1);
 	}
+	ft_init_target(*a, ft_search_lst(*a, ft_nbmin(*a)));
 	while ((*a)->nbr != ft_nbmin(*a))
-		ra(a);
-	if (check_stack(*a) == -1)
-		return (-1);
+	{
+		if ((ft_search_lst(*a, ft_nbmin(*a))->pos) < (ft_lstsize(*a) / 2))
+			ra(a);
+		else
+			rra(a);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:57 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 11:31:10 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:50:16 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		ft_rot(t_list **a, t_list **b, t_list *current, int dir);
 int		ft_rot_rev(t_list **a, t_list **b, t_list *current, int dir);
 int		ft_rev_rot(t_list **a, t_list **b, t_list *current, int dir);
 
-/*check_init.c*/
+/*check_init.c : vérifie que les conditions de l'exos sont respectées*/
 int		check_stack(t_list *a);
 int		same_nbr(int nbr, t_list *a);
 int		check_nbr(int nbr, char *argv, t_list *a);
@@ -87,5 +87,7 @@ int		ft_tablen(char **argv);
 int		stack_init(t_list **a, char **argv);
 
 /*main.c : contient le main*/
+int		ft_init_push(int argc, char **argv, t_list **a);
+void	ft_clean(t_list	**a, t_list **b);
 
 #endif

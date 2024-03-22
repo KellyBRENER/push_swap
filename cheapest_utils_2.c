@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 11:15:06 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 11:17:03 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:23:32 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ int	ft_init_current(t_list *src, t_list *dst, t_list *current, int dir)
 	else
 		current->target = ft_target_in_a(dst, current->nbr);
 	current->pos = ft_pos_lst(src, current);
-	current->nb_rev = ft_lstsize(src) - current->pos;
+	if (current->pos == 0)
+		current->nb_rev = 0;
+	else
+		current->nb_rev = ft_lstsize(src) - current->pos;
 	if (current->target == NULL || current->pos == -1 || current->nb_rev == -1)
 		return (-1);
 	return (0);
@@ -70,7 +73,10 @@ int	ft_init_current(t_list *src, t_list *dst, t_list *current, int dir)
 int	ft_init_target(t_list *lst, t_list *target)
 {
 	target->pos = ft_pos_lst(lst, target);
-	target->nb_rev = ft_lstsize(lst) - target->pos;
+	if (target->pos == 0)
+		target->nb_rev = 0;
+	else
+		target->nb_rev = ft_lstsize(lst) - target->pos;
 	if (target->pos == -1 || target->nb_rev == -1)
 		return (-1);
 	return (0);
