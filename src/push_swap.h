@@ -6,16 +6,16 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:57 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 15:50:16 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:49:43 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 
 # define PUSH_SWAP_H
-# include "libft/libft/libft.h"
-# include "libft/printf/ft_printf.h"
-# include "libft/gnl/get_next_line.h"
+# include "../libft/libft/libft.h"
+# include "../libft/printf/ft_printf.h"
+# include "../libft/gnl/get_next_line.h"
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>

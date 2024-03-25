@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:18:31 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 15:50:44 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:52:42 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	main(int argc, char **argv)
 			ft_printf("push_swap failed");
 			return (1);
 		}
+		//print_lst(a, "liste a after sort");
 		ft_clean(&a, &b);
 		return (0);
 	}

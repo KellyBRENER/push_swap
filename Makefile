@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 15:53:15 by kbrener-          #+#    #+#              #
-#    Updated: 2024/03/22 11:18:10 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/03/25 14:47:42 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,18 +23,18 @@ LIBFT_PATH = ./libft/
 LIBFT_LIB = $(LIBFT_PATH)libft.a
 
 # program files
-SRC		= 	push_swap.c \
-			push.c \
-			rotate.c \
-			swap.c \
-			reverse_rotate.c \
-			cheapest.c \
-			cheapest_utils.c \
-			cheapest_utils_2.c \
-			check_init.c \
-			execute.c \
-			lst.c \
-			main.c \
+SRC		= 	src/push_swap.c \
+			src/push.c \
+			src/rotate.c \
+			src/swap.c \
+			src/reverse_rotate.c \
+			src/cheapest.c \
+			src/cheapest_utils.c \
+			src/cheapest_utils_2.c \
+			src/check_init.c \
+			src/execute.c \
+			src/lst.c \
+			src/main.c \
 
 
 # SRC_BONUS	= pipex_bonus.c \
