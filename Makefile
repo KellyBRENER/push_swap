@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 15:53:15 by kbrener-          #+#    #+#              #
-#    Updated: 2024/03/25 14:47:42 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/03/26 12:07:37 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC		= 	src/push_swap.c \
 			src/check_init.c \
 			src/execute.c \
 			src/lst.c \
+			src/previous_sort.c \
 			src/main.c \
 
 

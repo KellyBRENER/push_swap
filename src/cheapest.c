@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:59:50 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 11:18:45 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:09:00 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_list	*ft_cheapest(t_list *src, t_list *dst, int dir)
 	{
 		move = ft_nbmove(src, dst, current, dir);
 		if (move == -1)
-			return (ft_printf("error in ft_nbmove"), NULL);
+			return (perror("error in ft_nbmove"), NULL);
 		if (move < move_min)
 		{
 			move_min = move;

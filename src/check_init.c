@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:13:28 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 16:05:59 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:10:31 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ int	check_nbr(int nbr, char *argv, t_list *a)
 {
 	if (nbr == 0 && argv[0] != '0')
 	{
-		ft_printf("invalid number");
+		perror("invalid number");
 		return (-1);
 	}
 	else if (nbr >= INT_MAX || nbr <= INT_MIN)
 	{
-		ft_printf("invalid number\n");
+		perror("invalid number\n");
 		return (-1);
 	}
 	else if (same_nbr(nbr, a) == 0)
 	{
-		ft_printf("there is two numbers identical");
+		perror("there is two numbers identical");
 		return (-1);
 	}
 	return (nbr);

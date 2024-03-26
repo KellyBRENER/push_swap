@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:18:31 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/25 14:52:42 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:11:18 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_init_push(int argc, char **argv, t_list **a)
 	if (check_stack(*a) == 0)
 	{
 		ft_lstclear(a, free);
-		ft_printf("numbers already sorted");
+		perror("numbers already sorted");
 		return (1);
 	}
 	if (ft_tablen(argv) == 3)
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 		if (push_swap(&a, &b) == -1 || check_stack(a) == 1)
 		{
 			ft_clean(&a, &b);
-			ft_printf("push_swap failed");
+			perror("push_swap failed");
 			return (1);
 		}
 		//print_lst(a, "liste a after sort");

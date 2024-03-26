@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:57 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/25 14:49:43 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:37:40 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ int		same_nbr(int nbr, t_list *a);
 int		check_nbr(int nbr, char *argv, t_list *a);
 int		ft_tablen(char **argv);
 int		stack_init(t_list **a, char **argv);
+
+/*previous_sort.c*/
+int	ft_sorttab(int *tab, int size);
+int	ft_getmedian(t_list *a, int size);
+int	ft_presort(t_list **a, t_list **b);
 
 /*main.c : contient le main*/
 int		ft_init_push(int argc, char **argv, t_list **a);
