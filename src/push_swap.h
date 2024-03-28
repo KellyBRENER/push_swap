@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:57 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/26 13:37:40 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:11:21 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int		ft_pos_lst(t_list *lst, t_list *current);
 /*cheapest_utils_2.c*/
 int		ft_movemin(int rot, int rev, int rotrev, int revrot);
 int		ft_nbmove(t_list *src, t_list *dst, t_list *current, int dir);
-int		ft_init_current(t_list *src, t_list *dst, t_list *current, int dir);
-int		ft_init_target(t_list *lst, t_list *target);
+void	ft_init_current(t_list *src, t_list *dst, t_list *current, int dir);
+void	ft_init_target(t_list *lst, t_list *target);
 
 /*execute.c : fonctions executant les opérations resultant de cheapest*/
 int		ft_rev(t_list **a, t_list **b, t_list *current, int dir);
@@ -87,12 +87,13 @@ int		ft_tablen(char **argv);
 int		stack_init(t_list **a, char **argv);
 
 /*previous_sort.c*/
-int	ft_sorttab(int *tab, int size);
-int	ft_getmedian(t_list *a, int size);
-int	ft_presort(t_list **a, t_list **b);
+int		ft_sorttab(int *tab, int size);
+int		ft_getmedian(t_list *a, int size);
+void	ft_presort(t_list **a, t_list **b);
 
 /*main.c : contient le main*/
 int		ft_init_push(int argc, char **argv, t_list **a);
+void	ft_error(int i);
 void	ft_clean(t_list	**a, t_list **b);
 
 #endif

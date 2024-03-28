@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 11:15:06 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 15:23:32 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/28 13:11:49 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ int	ft_nbmove(t_list *src, t_list *dst, t_list *current, int dir)
 	int	revrot;
 	int	movemin;
 
-	if (ft_init_current(src, dst, current, dir) == -1
-		|| ft_init_target(dst, current->target) == -1)
-		return (-1);
+	ft_init_current(src, dst, current, dir);
+	ft_init_target(dst, current->target);
 	rot = ft_nb_rot(current, current->target);
 	rev = ft_nb_rev(current, current->target);
 	rotrev = current->pos + current->target->nb_rev;
@@ -53,7 +52,7 @@ int	ft_nbmove(t_list *src, t_list *dst, t_list *current, int dir)
 }
 
 /*initialise target, pos et nb_rev des listes de la stack a ou b*/
-int	ft_init_current(t_list *src, t_list *dst, t_list *current, int dir)
+void	ft_init_current(t_list *src, t_list *dst, t_list *current, int dir)
 {
 	if (dir == 0)
 		current->target = ft_target_in_b(dst, current->nbr);
@@ -65,12 +64,11 @@ int	ft_init_current(t_list *src, t_list *dst, t_list *current, int dir)
 	else
 		current->nb_rev = ft_lstsize(src) - current->pos;
 	if (current->target == NULL || current->pos == -1 || current->nb_rev == -1)
-		return (-1);
-	return (0);
+		ft_error(1);
 }
 
 /*initialise pos et nb_rev des listes de la stack b*/
-int	ft_init_target(t_list *lst, t_list *target)
+void	ft_init_target(t_list *lst, t_list *target)
 {
 	target->pos = ft_pos_lst(lst, target);
 	if (target->pos == 0)
@@ -78,6 +76,5 @@ int	ft_init_target(t_list *lst, t_list *target)
 	else
 		target->nb_rev = ft_lstsize(lst) - target->pos;
 	if (target->pos == -1 || target->nb_rev == -1)
-		return (-1);
-	return (0);
+		ft_error(1);
 }

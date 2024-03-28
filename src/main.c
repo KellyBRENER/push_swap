@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:18:31 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/26 15:11:18 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:40:03 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ void	ft_clean(t_list	**a, t_list **b)
 		ft_lstclear(b, free);
 }
 
+void	ft_error(int i)
+{
+	ft_printf(2, "Error");
+	exit(1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*a;
@@ -65,7 +71,6 @@ int	main(int argc, char **argv)
 			perror("push_swap failed");
 			return (1);
 		}
-		//print_lst(a, "liste a after sort");
 		ft_clean(&a, &b);
 		return (0);
 	}

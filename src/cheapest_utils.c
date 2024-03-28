@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:07:21 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 11:24:41 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:16:48 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_nb_rot(t_list *current, t_list *target)
 int	ft_nb_rev(t_list *current, t_list *target)
 {
 	if (current->nb_rev < target->nb_rev)
-		return (target->nbr);
+		return (target->nb_rev);
 	return (current->nb_rev);
 }
 

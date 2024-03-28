@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 10:42:49 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/26 12:10:41 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/28 12:41:28 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	tiny_sort(t_list **a)
 	else
 		rra(a);
 	if (check_stack(*a) == 1)
-		return (-1);
+		ft_error(1);
 	return (0);
 }
 
@@ -39,7 +39,7 @@ int	tiny_sort(t_list **a)
 int	ft_src_to_dst(t_list **a, t_list **b, t_list *current, int dir)
 {
 	if (!current)
-		return (-1);
+		ft_error(1);
 	if (current->best_move == 1)
 		return (ft_rot(a, b, current, dir));
 	if (current->best_move == 2)
