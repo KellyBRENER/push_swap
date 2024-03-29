@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:08:01 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/28 12:53:08 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:32:41 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	ft_sorttab(int *tab, int size)
 	int	temp;
 
 	i = 0;
-	if (!tab)
-		ft_error(1);
 	while (tab[i])
 	{
 		if (tab[i] > tab[i + 1])

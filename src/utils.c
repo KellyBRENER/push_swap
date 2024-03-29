@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/21 11:18:31 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/29 11:13:48 by kbrener-         ###   ########.fr       */
+/*   Created: 2024/03/29 11:12:38 by kbrener-          #+#    #+#             */
+/*   Updated: 2024/03/29 11:13:34 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+/*calcule le nbr de nbr, la taille de la liste*/
+int	ft_tablen(char **argv)
 {
-	t_list	*a;
-	t_list	*b;
-	int		init;
+	int	i;
 
-	a = NULL;
-	b = NULL;
-	init = ft_init_push(argc, argv, &a);
-	if (init == 1)
-		return (0);
-	else if (init == -1 || push_swap(&a, &b) == -1)
+	i = 0;
+	while (argv[i])
 	{
-		ft_clean(&a, &b);
-		write(2, "Error\n", 6);
-		return (1);
+		if (!argv[i][0])
+			return (i);
+		i++;
 	}
-	ft_clean(&a, &b);
-	return (0);
+	return (i - 1);
+}
+
+void	ft_clean(t_list	**a, t_list **b)
+{
+	if (a)
+		ft_lstclear(a, free);
+	if (b)
+		ft_lstclear(b, free);
 }

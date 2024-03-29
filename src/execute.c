@@ -6,14 +6,14 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:09:27 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 11:23:38 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/29 09:39:42 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*execute les ra et rb et rr si possible*/
-int	ft_rot(t_list **a, t_list **b, t_list *current, int dir)
+int	ft_rot(t_list **a, t_list **b, t_list *current)
 {
 	while (current->pos > 0 && current->target->pos > 0)
 	{
@@ -23,25 +23,15 @@ int	ft_rot(t_list **a, t_list **b, t_list *current, int dir)
 	}
 	while (current->pos-- > 0)
 	{
-		if (dir == 0)
-			ra(a);
-		else
-			rb(b);
+		rb(b);
 	}
 	while (current->target->pos-- > 0)
-	{
-		if (dir == 0)
-			rb(b);
-		else
-			ra(a);
-	}
-	if (dir == 0)
-		return (pb(a, b));
+		ra(a);
 	return (pa(a, b));
 }
 
 /*execute les rra et rrb et rrr si possible*/
-int	ft_rev(t_list **a, t_list **b, t_list *current, int dir)
+int	ft_rev(t_list **a, t_list **b, t_list *current)
 {
 	while (current->nb_rev > 0 && current->target->nb_rev > 0)
 	{
@@ -50,64 +40,28 @@ int	ft_rev(t_list **a, t_list **b, t_list *current, int dir)
 		current->target->nb_rev--;
 	}
 	while (current->nb_rev-- > 0)
-	{
-		if (dir == 0)
-			rra(a);
-		else
-			rrb(b);
-	}
+		rrb(b);
 	while (current->target->nb_rev-- > 0)
-	{
-		if (dir == 0)
-			rrb(b);
-		else
-			rra(a);
-	}
-	if (dir == 0)
-		return (pb(a, b));
+		rra(a);
 	return (pa(a, b));
 }
 
 /*execute les ra et rrb*/
-int	ft_rot_rev(t_list **a, t_list **b, t_list *current, int dir)
+int	ft_rot_rev(t_list **a, t_list **b, t_list *current)
 {
 	while (current->pos-- > 0)
-	{
-		if (dir == 0)
-			ra(a);
-		else
-			rb(b);
-	}
+		rb(b);
 	while (current->target->nb_rev-- > 0)
-	{
-		if (dir == 0)
-			rrb(b);
-		else
-			rra(a);
-	}
-	if (dir == 0)
-		return (pb(a, b));
+		rra(a);
 	return (pa(a, b));
 }
 
 /*execute les rra et rb*/
-int	ft_rev_rot(t_list **a, t_list **b, t_list *current, int dir)
+int	ft_rev_rot(t_list **a, t_list **b, t_list *current)
 {
 	while (current->target->pos-- > 0)
-	{
-		if (dir == 0)
-			rb(b);
-		else
-			ra(a);
-	}
+		ra(a);
 	while (current->nb_rev-- > 0)
-	{
-		if (dir == 0)
-			rra(a);
-		else
-			rrb(b);
-	}
-	if (dir == 0)
-		return (pb(a, b));
+		rrb(b);
 	return (pa(a, b));
 }

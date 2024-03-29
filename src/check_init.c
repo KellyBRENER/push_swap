@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:13:28 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/26 15:10:31 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:15:27 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,58 +45,26 @@ int	same_nbr(int nbr, t_list *a)
 int	check_nbr(int nbr, char *argv, t_list *a)
 {
 	if (nbr == 0 && argv[0] != '0')
-	{
-		perror("invalid number");
 		return (-1);
-	}
-	else if (nbr >= INT_MAX || nbr <= INT_MIN)
-	{
-		perror("invalid number\n");
+	else if (nbr > INT_MAX || nbr < INT_MIN)
 		return (-1);
-	}
 	else if (same_nbr(nbr, a) == 0)
-	{
-		perror("there is two numbers identical");
 		return (-1);
-	}
-	return (nbr);
+	return (0);
 }
 
-/*calcule le nbr de nbr, la taille de la liste*/
-int	ft_tablen(char **argv)
+int	ft_check_str(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (argv[i])
-	{
-		if (!argv[i][0])
-			return (i);
+	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n'
+		|| str[i] == '\r' || str[i] == '\t'
+		|| str[i] == '\v' || str[i] == '-' || str[i] == '+')
 		i++;
-	}
-	return (i - 1);
-}
-
-//stack_init
-	/*convertit chaque string de char en int
-	verifie qu'il fasse partie des int (entre int max et min)
-	verifie que le nbr ne soit pas egal a un autre nbr de la liste
-	cree la liste pour le 1er nombre
-	ajoute les autres nbr a la fin de la liste chainee*/
-
-int	stack_init(t_list **a, char **argv)
-{
-	int	i;
-	int	nbr;
-
-	i = 1;
-	while (argv[i])
-	{
-		nbr = ft_atoi(argv[i]);
-		if (check_nbr(nbr, argv[i], *a) == -1)
-			return (-1);
-		ft_lstadd_back(a, ft_lstnew_nbr(nbr));
+	while (str[i] >= '0' && str[i] <= '9')
 		i++;
-	}
+	if (str[i] != '\0' && !(str[i] >= '0' && str[i] <= '9'))
+		return (-1);
 	return (0);
 }

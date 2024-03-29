@@ -6,26 +6,37 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:07:21 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/28 12:16:48 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/29 10:07:52 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//compte le nombre de rotation totale (ra, rb et rr)
-int	ft_nb_rot(t_list *current, t_list *target)
+//renvoie le nb le plus petit parmi les 4
+int	ft_movemin(t_list *current, t_list *target)
 {
-	if (current->pos < target->pos)
-		return (target->pos);
-	return (current->pos);
-}
+	int	rot;
+	int	rev;
+	int	rotrev;
+	int	revrot;
 
-//compte le nombre de reverse totale (rra, rrb et rrr)
-int	ft_nb_rev(t_list *current, t_list *target)
-{
+	if (current->pos < target->pos)
+		rot = target->pos;
+	else
+		rot = current->pos;
 	if (current->nb_rev < target->nb_rev)
-		return (target->nb_rev);
-	return (current->nb_rev);
+		rev = target->nb_rev;
+	else
+		rev = current->nb_rev;
+	rotrev = current->pos + target->nb_rev;
+	revrot = current->nb_rev + target->pos;
+	if (rot < rev && rot < rotrev && rot < revrot)
+		return (current->best_move = 1, rot);
+	if (rev < rot && rev < rotrev && rev < revrot)
+		return (current->best_move = 2, rev);
+	if (rotrev < revrot)
+		return (current->best_move = 3, rotrev);
+	return (current->best_move = 4, revrot);
 }
 
 //cherche le nb max dans une liste chainée
