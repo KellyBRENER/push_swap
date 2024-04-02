@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 10:36:40 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/29 09:53:53 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:06:04 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,20 @@ t_list	*ft_search_lst(t_list *lst, int nb)
 		lst = lst->next;
 	}
 	return (NULL);
+}
+
+/*renvoie la position d'une liste dans la liste chainée*/
+int	ft_pos_lst(t_list *lst, t_list *current)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		if (lst->nbr == current->nbr)
+			return (i);
+		i++;
+		lst = lst->next;
+	}
+	return (-1);
 }

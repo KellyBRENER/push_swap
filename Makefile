@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 15:53:15 by kbrener-          #+#    #+#              #
-#    Updated: 2024/03/29 11:17:52 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/04/02 15:14:55 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,12 @@ SRC		= 	src/push_swap.c \
 			src/reverse_rotate.c \
 			src/cheapest.c \
 			src/cheapest_utils.c \
-			src/check_init.c \
+			src/cheapest_utils_2.c \
+			src/check.c \
+			src/init.c \
+			src/clean.c \
 			src/execute.c \
 			src/lst.c \
-			src/previous_sort.c \
-			src/utils.c \
 			src/main.c \
 
 

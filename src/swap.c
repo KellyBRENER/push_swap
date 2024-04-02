@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:39:00 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/26 15:12:25 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:29:26 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ss(t_list **a, t_list **b)
 	else if (swap(b) == -1)
 	{
 		if (swap(a) == -1)
-			perror("a move cannot be cancelled");
+			ft_printf("a move cannot be cancelled");
 		return (-1);
 	}
 	write(1, "ss\n", 3);

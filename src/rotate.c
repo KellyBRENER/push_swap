@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:52:22 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/26 15:12:10 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/03/22 11:29:07 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	rr(t_list **a, t_list **b)
 	else if (rotate(b) == -1)
 	{
 		if (reverse_rotate(a) == -1)
-			perror("a move cannot be cancelled");
+			printf("a move cannot be cancelled");
 		return (-1);
 	}
 	write(1, "rr\n", 3);

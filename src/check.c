@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_init.c                                       :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:13:28 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/29 11:15:27 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/02 15:17:15 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*check si les nbr d'une liste sont dans l'ordre croissant*/
-int	check_stack(t_list *a)
+int	ft_check_stack(t_list *a)
 {
 	int	nbr_max;
 
@@ -30,7 +30,7 @@ int	check_stack(t_list *a)
 }
 
 /*vérifie qu'il n'y a pas déjà ce nbr dans la liste*/
-int	same_nbr(int nbr, t_list *a)
+int	ft_same_nbr(int nbr, t_list *a)
 {
 	while (a)
 	{
@@ -42,17 +42,18 @@ int	same_nbr(int nbr, t_list *a)
 }
 
 /*vérifie si les nbr correspondent aux règles du projet*/
-int	check_nbr(int nbr, char *argv, t_list *a)
+int	ft_check_nbr(int nbr, char *argv, t_list *a)
 {
 	if (nbr == 0 && argv[0] != '0')
 		return (-1);
 	else if (nbr > INT_MAX || nbr < INT_MIN)
 		return (-1);
-	else if (same_nbr(nbr, a) == 0)
+	else if (ft_same_nbr(nbr, a) == 0)
 		return (-1);
 	return (0);
 }
 
+/*verifie que le nbr ne contient pas de lettres ou autres*/
 int	ft_check_str(char *str)
 {
 	int	i;
