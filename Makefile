@@ -6,7 +6,7 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 15:53:15 by kbrener-          #+#    #+#              #
-#    Updated: 2024/04/04 10:45:41 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/04/04 12:36:37 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,7 @@ clean:
 fclean: clean
 	@echo "les fichers ont ete supprimes"
 	@make fclean -sC $(LIBFT_PATH)
-	@rm -rf $(LIBFT_LIB) $(NAME)
+	@rm -rf $(LIBFT_LIB) $(NAME) $(BONUS)
 
 re: fclean all
 

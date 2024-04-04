@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:00:22 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/04 11:54:49 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:51:07 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ int	ft_init_push(int argc, char **argv, t_list **a)
 		i = 0;
 	}
 	if (ft_stack_init(a, argv, i) == -1)
-		return (-1);
+	{
+		if (i == 0)
+			ft_freetab(argv);
+		return (ft_lstclear(a, free), -1);
+	}
 	if (i == 0)
 		ft_freetab(argv);
 	if (a == NULL)
