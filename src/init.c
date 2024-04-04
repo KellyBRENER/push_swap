@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:00:22 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/02 15:30:54 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:54:49 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	ft_init_push(int argc, char **argv, t_list **a)
 	int	i;
 
 	i = 1;
+	if (argc == 1 || (argc == 2 && !argv[1][0]))
+		return (1);
 	if (argc == 2)
 	{
 		argv = ft_split(argv[1], ' ');
@@ -53,13 +55,5 @@ int	ft_init_push(int argc, char **argv, t_list **a)
 		ft_freetab(argv);
 	if (a == NULL)
 		return (ft_lstclear(a, free), ft_printf("initialisation failed"), -1);
-	if (ft_check_stack(*a) == 0)
-		return (ft_lstclear(a, free), 1);
-	if (ft_lstsize(*a) == 3)
-	{
-		if (ft_tiny_sort(a) == -1)
-			return (ft_lstclear(a, free), -1);
-		return (ft_lstclear(a, free), 1);
-	}
 	return (0);
 }

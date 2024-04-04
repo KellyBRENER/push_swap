@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:57 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/02 15:31:44 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:19:56 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		ft_rev_rot(t_list **a, t_list **b, t_list *current, int dir);
 int		ft_check_stack(t_list *a);
 int		ft_same_nbr(int nbr, t_list *a);
 int		ft_check_nbr(int nbr, char *argv, t_list *a);
-int	ft_check_str(char *str);
+int		ft_check_str(char *str);
 
 /*init.c : fonctions qui initialise la stack avant d'executer pushswap*/
 int		ft_stack_init(t_list **a, char **argv, int i);
@@ -90,5 +90,10 @@ int		ft_init_push(int argc, char **argv, t_list **a);
 /*clean.c : fonction permettant de free listes et tab*/
 void	ft_freetab(char **argv);
 void	ft_clean(t_list	**a, t_list **b);
+
+/*checker.c : fonctions bonus qui vérifient si les instructions fournies par
+push_swap trient bien la liste A*/
+int		ft_check_line(t_list **a, t_list **b);
+int		ft_exec_line(char *line, t_list **a, t_list **b);
 
 #endif

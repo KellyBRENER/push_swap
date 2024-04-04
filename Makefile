@@ -6,13 +6,13 @@
 #    By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 15:53:15 by kbrener-          #+#    #+#              #
-#    Updated: 2024/04/02 15:14:55 by kbrener-         ###   ########.fr        #
+#    Updated: 2024/04/04 10:45:41 by kbrener-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Program name
 NAME	= push_swap
-#BONUS	= push_swap
+BONUS	= checker
 
 # Compiler options
 CC		= cc
@@ -39,12 +39,19 @@ SRC		= 	src/push_swap.c \
 			src/main.c \
 
 
-# SRC_BONUS	= pipex_bonus.c \
-			pipex_utils.c \
+SRC_BONUS	=	src/push.c \
+				src/rotate.c \
+				src/swap.c \
+				src/reverse_rotate.c \
+				src/lst.c \
+				src/check.c \
+				src/init.c \
+				src/clean.c \
+				bonus/checker.c \
 
 OBJ		= $(SRC:.c=.o)
 
-#OBJ_BONUS = $(SRC_BONUS:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 # Includes
 INCLUDES = 	-I ./includes/\
@@ -64,14 +71,14 @@ $(NAME): $(OBJ) $(LIBFT_LIB)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) -o $(NAME) -g
 
 # Compiling BONUS
-#bonus: $(OBJ_BONUS) $(LIBFT_LIB)
-#	@$(CC) $(CFLAGS) $(OBJ_BONUS) $(LIBFT_LIB) -o $(BONUS) -g
+bonus: $(OBJ_BONUS) $(LIBFT_LIB)
+	@$(CC) $(CFLAGS) $(OBJ_BONUS) $(LIBFT_LIB) -o $(BONUS) -g
 
 clean:
 	@echo "les fichiers ont ete supprimes"
 	@make clean -sC $(LIBFT_PATH)
 	@rm -rf $(OBJ)
-#	@rm -rf $(OBJ_BONUS)
+	@rm -rf $(OBJ_BONUS)
 
 
 fclean: clean
