@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 09:25:33 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/04 12:46:32 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:46:34 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,9 @@ int	main(int argc, char **argv)
 	a = NULL;
 	b = NULL;
 	init = ft_init_push(argc, argv, &a);
-	if (init == -1)
+	if (init == 1)
+		return (0);
+	else if (init == -1)
 		return (write(2, "Error\n", 6), 1);
 	rtn = ft_check_line(&a, &b);
 	if (rtn == -1)

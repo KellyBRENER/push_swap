@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:13:28 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/05 11:13:13 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:39:17 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ int	ft_atol(long *nbr, char *argv)
 	while (argv[i] >= '0' && argv[i] <= '9')
 	{
 		*nbr = *nbr * 10 + argv[i] - 48;
-		if (sign == -1 && *nbr > (INT_MAX + 1))
+		if (sign == -1 && -(*nbr) < INT_MIN)
 			return (-1);
 		else if (sign == 1 && *nbr > INT_MAX)
 			return (-1);
 		i++;
 	}
+	*nbr = sign * *nbr;
 	return (0);
 }
 
