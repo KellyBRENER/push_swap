@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 15:00:22 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/04 12:51:07 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:09:10 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,17 @@
 
 int	ft_stack_init(t_list **a, char **argv, int i)
 {
-	int	nbr;
+	long	nbr;
 
 	while (argv[i])
 	{
 		if (ft_check_str(argv[i]) == -1)
 			return (-1);
-		nbr = ft_atoi(argv[i]);
-		if (ft_check_nbr(nbr, argv[i], *a) == -1)
+		if (ft_atol(&nbr, argv[i]) == -1)
 			return (-1);
-		ft_lstadd_back(a, ft_lstnew_nbr(nbr));
+		if (ft_same_nbr(nbr, *a) == 0)
+			return (-1);
+		ft_lstadd_back(a, ft_lstnew_nbr((int)nbr));
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 11:13:28 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/02 15:17:15 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:13:13 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,32 @@ int	ft_same_nbr(int nbr, t_list *a)
 	return (1);
 }
 
-/*vérifie si les nbr correspondent aux règles du projet*/
-int	ft_check_nbr(int nbr, char *argv, t_list *a)
+/*genere nbr en int et verifie qu*/
+int	ft_atol(long *nbr, char *argv)
 {
-	if (nbr == 0 && argv[0] != '0')
-		return (-1);
-	else if (nbr > INT_MAX || nbr < INT_MIN)
-		return (-1);
-	else if (ft_same_nbr(nbr, a) == 0)
-		return (-1);
+	int		i;
+	int		sign;
+
+	i = 0;
+	sign = 1;
+	*nbr = 0;
+	while (argv[i] == ' ' || (argv[i] >= 9 && argv[i] <= 13))
+		i++;
+	if (argv[i] == '-' || argv[i] == '+')
+	{
+		if (argv[i] == '-')
+			sign = -sign;
+		i++;
+	}
+	while (argv[i] >= '0' && argv[i] <= '9')
+	{
+		*nbr = *nbr * 10 + argv[i] - 48;
+		if (sign == -1 && *nbr > (INT_MAX + 1))
+			return (-1);
+		else if (sign == 1 && *nbr > INT_MAX)
+			return (-1);
+		i++;
+	}
 	return (0);
 }
 

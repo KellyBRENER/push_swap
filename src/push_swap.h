@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:57 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/04/04 12:19:56 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/05 11:11:38 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		ft_rev_rot(t_list **a, t_list **b, t_list *current, int dir);
 /*check.c : vérifie que les conditions de l'exos sont respectées*/
 int		ft_check_stack(t_list *a);
 int		ft_same_nbr(int nbr, t_list *a);
-int		ft_check_nbr(int nbr, char *argv, t_list *a);
+int		ft_atol(long *nbr, char *argv);
 int		ft_check_str(char *str);
 
 /*init.c : fonctions qui initialise la stack avant d'executer pushswap*/
