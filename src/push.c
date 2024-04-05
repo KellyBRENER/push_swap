@@ -6,7 +6,7 @@
 /*   By: kbrener- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:02:47 by kbrener-          #+#    #+#             */
-/*   Updated: 2024/03/22 11:28:54 by kbrener-         ###   ########.fr       */
+/*   Updated: 2024/04/05 15:24:32 by kbrener-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	push(t_list **src, t_list **dest)
 	t_list	*temp;
 
 	temp = NULL;
-	if (!dest)
+	if (!dest || !src || !(*src))
 		return (-1);
 	temp = *dest;
 	*dest = *src;
